@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 
 class Address extends Model
 {
+    public $timestamps = false;
+
     protected $table = 'addresses';
     protected $fillable = [
         'street',
@@ -13,20 +17,10 @@ class Address extends Model
         'number',
         'complement',
         'neighborhood_id',
-        'city_id',
-        'state_id',
     ];
 
-    public function neighborhood()
+    public function neighborhood(): BelongsTo
     {
         return $this->belongsTo(Neighborhood::class);
-    }
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
-    public function state()
-    {
-        return $this->belongsTo(State::class);
     }
 }

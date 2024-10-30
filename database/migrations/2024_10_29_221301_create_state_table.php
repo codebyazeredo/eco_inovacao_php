@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('state', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            $table->string('state_code', 2)->unique();
+            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 

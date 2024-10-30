@@ -8,21 +8,18 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->timestamp('start_event');
+            $table->id();
+            $table->string('title')->nullable();
+            $table->text('description');
+            $table->timestamp('start_event')->nullable();
             $table->timestamp('end_event');
-            $table->string('local');
-            $table->text('how_to_get')->nullable();
-            $table->string('link_event')->nullable();
+            $table->string('place')->nullable();
+            $table->string('link_event');
+            $table->string('link_event_2');
             $table->boolean('private_event')->default(false);
-            $table->uuid('user_id');
-            $table->uuid('address_id');
-            $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('address_id')->references('id')->on('addresses');
+            $table->timestamps();
         });
     }
 
